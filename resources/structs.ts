@@ -1004,6 +1004,28 @@ export interface Island {
   };
 }
 
+export interface PartyMemberIsland {
+  LinkId: string;
+  MatchmakingSettingsV1: {
+    privacy: string;
+    productModes: any[];
+    regionId: string;
+    world: {
+      bIsJoinable: boolean;
+      iD: string;
+      name: string;
+      ownerId: string;
+    };
+  };
+  Session: {
+    iD: string;
+    joinInfo: {
+      joinablity: string;
+      sessionKey: string;
+    };
+  };
+}
+
 export interface Cosmetics {
   outfit?: { id: string; variants?: CosmeticVariant[]; enlightment?: CosmeticEnlightment };
   backpack?: { id: string; variants?: CosmeticVariant[]; path?: string };
@@ -1013,16 +1035,13 @@ export interface Cosmetics {
 
 export interface CosmeticVariant {
   channel: string;
+  channelIndex: number;
   variant: string;
-  dE?: number;
+  variantIndex: number;
 }
 
 export interface CosmeticVariantMeta {
-  i: {
-    v: string;
-    c: string;
-    dE: number;
-  }[];
+  i: string[];
 }
 
 export interface CosmeticsVariantMeta {
@@ -1069,10 +1088,12 @@ export interface TournamentColors {
 }
 
 export interface TournamentImages {
+  squarePosterImage?: string;
   loadingScreenImage?: string;
   posterBackImage?: string;
   posterFrontImage?: string;
   playlistTileImage?: string;
+  tournamentViewBackgroundImage?: string;
 }
 
 export interface TournamentTexts {
@@ -1499,7 +1520,7 @@ export interface AuthSessionStore<K, V> extends Collection<K, V> {
  */
 export interface ChatMessagePayload {
   /**
-   * The message body, should not be empty and not exceed the limit of 256 characters. Please note that emojis count as 2 characters.
+   * The message body, should not be empty and not exceed the limit of 2048 characters. Please note that emojis count as 2 characters.
    */
   body: string;
 }
